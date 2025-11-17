@@ -67,6 +67,16 @@ async def get_session() -> AsyncSession:
 async def health():
     return {"status": "ok"}
 
+@app.get("/test-db")
+async def test_db():
+    try:
+        async with engine.begin() as conn:
+            await conn.execute(text("SELECT 1"))
+        return {"ok": True}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
 # Create item
 @app.post("/items", response_model=ItemRead, status_code=201)
 async def create_item(payload: ItemCreate, session: AsyncSession = Depends(get_session)):
