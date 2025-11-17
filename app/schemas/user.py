@@ -11,3 +11,4 @@ class UserRead(BaseModel):
 
     class Config:
         orm_mode = True
+
