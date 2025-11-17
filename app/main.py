@@ -12,6 +12,8 @@ app = FastAPI()
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(farms_router)
+app.include_router(devices_router)
+app.include_router(sensors_router)
 
 
 app = FastAPI(title="Farm FastAPI PostgreSQL + JWT")
