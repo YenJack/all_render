@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from app.api.auth import router as auth_router
 from app.api.users import router as users_router
 from app.api.farms import router as farms_router
+from app.api.devices import router as devices_router
+from app.api.sensors import router as sensors_router
 
 app = FastAPI()
 
