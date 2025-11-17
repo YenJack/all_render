@@ -11,4 +11,4 @@ app.include_router(sensors.router, prefix="/sensors")
 
 @app.get("/")
 async def root():
-    return {"message": "FastAPI + PostgreSQL + JWT Running"}
+    return {"message": "FastAPI + PostgreSQL + JWT Running 測試"}
