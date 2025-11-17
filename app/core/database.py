@@ -1,8 +1,8 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from app.core.config import settings
+import os
 
-DATABASE_URL = settings.get_db_url()
+DATABASE_URL = os.getenv("DATABASE_URL")
 print("Using DATABASE_URL:", DATABASE_URL)  # DEBUG
 
 engine = create_async_engine(DATABASE_URL, echo=False, future=True)
