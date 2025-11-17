@@ -14,6 +14,11 @@ app.include_router(farms_router, prefix="/farms", tags=["Farms"])
 app.include_router(devices_router, prefix="/devices", tags=["Devices"])
 app.include_router(sensors_router, prefix="/sensors", tags=["Sensors"])
 
+@app.on_event("startup")
+async def on_startup():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
 @app.get("/")
 async def root():
     return {"message": "FastAPI + PostgreSQL + JWT Running 測試"}
