@@ -1,9 +1,11 @@
+# app/schemas/user.py
 from pydantic import BaseModel
 
 class UserCreate(BaseModel):
     username: str
     email_address: str
     password: str
+    full_name: str | None = None
 
 class UserRead(BaseModel):
     id: int
