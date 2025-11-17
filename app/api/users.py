@@ -8,7 +8,11 @@ from app.core.database import get_db
 from app.models.user import User
 from app.schemas.user import UserCreate, UserRead
 
-router = APIRouter()
+#router = APIRouter()
+router = APIRouter(
+    prefix="/users",
+    tags=["users"]
+)
 
 @router.post("/", response_model=UserRead)
 async def create_user(payload: UserCreate, db: AsyncSession = Depends(get_db)):
