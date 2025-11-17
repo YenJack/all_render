@@ -13,6 +13,10 @@ if not DATABASE_URL:
 # SQLAlchemy async 需要 postgres+asyncpg://
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1)
+elif DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+
+print("Using DATABASE_URL:", DATABASE_URL)
 
 # 建立 async engine
 engine = create_async_engine(
