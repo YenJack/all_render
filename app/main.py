@@ -1,5 +1,16 @@
 from fastapi import FastAPI
-from app.api import auth, users, farms, devices, sensors
+#from app.api import auth, users, farms, devices, sensors
+#from fastapi import FastAPI
+from app.api.auth import router as auth_router
+from app.api.users import router as users_router
+from app.api.farms import router as farms_router
+
+app = FastAPI()
+
+app.include_router(auth_router)
+app.include_router(users_router)
+app.include_router(farms_router)
+
 
 app = FastAPI(title="Farm FastAPI PostgreSQL + JWT")
 
