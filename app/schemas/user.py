@@ -3,9 +3,9 @@ from pydantic import BaseModel, EmailStr, Field
 
 
 class UserCreate(BaseModel):
-    username: str
-    email_address: str
-    password: str = Field(..., max_length=72)
+    username: str = Field(..., max_length=50)
+    email_address: EmailStr
+    password: str = Field(..., max_length=50)  # 字元數限制，不超過 50
     full_name: str | None = None
 
 class UserRead(BaseModel):
