@@ -26,7 +26,7 @@ class User(UserBase):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True  # Pydantic v1 使用 orm_mode
 
 # Farm Schemas
 class FarmBase(BaseModel):
@@ -59,7 +59,7 @@ class Farm(FarmBase):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 # Device Schemas
 class DeviceBase(BaseModel):
@@ -87,7 +87,7 @@ class Device(DeviceBase):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 # Sensor Schemas
 class SensorBase(BaseModel):
@@ -106,4 +106,4 @@ class Sensor(SensorBase):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
