@@ -14,7 +14,7 @@ router = APIRouter(tags=["auth"])
 
 @router.post("/register", response_model=Token)
 async def register(user_in: UserCreate, db: AsyncSession = Depends(get_db)):
-    # 簡單檢查 username/email
+    # 檢查 username/email 是否存在
     result = await db.execute(select(User).where(User.username == user_in.username))
     existing = result.scalar_one_or_none()
     if existing:
@@ -23,8 +23,15 @@ async def register(user_in: UserCreate, db: AsyncSession = Depends(get_db)):
     u = User(
         username=user_in.username,
         email_address=user_in.email_address,
-        full_name=getattr(user_in, "full_name", None),
+        full_name=user_in.full_name or "",
+        phone_number=user_in.phone_number or "",
+        registration_date=datetime.now().isoformat(),
+        last_login_date="",
         hashed_password=hash_password(user_in.password),
+        device_list="[]",
+        farm_list="[]",
+        shared_devices="[]",
+        shared_farms="[]",
     )
     db.add(u)
     await db.commit()
