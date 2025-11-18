@@ -2,19 +2,21 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 # User Schemas
-class UserBase(BaseModel):
-    fullName: Optional[str] = None
-    phoneNumber: Optional[str] = None
-    registrationDate: Optional[str] = None
-    lastLoginDate: Optional[str] = None
-    emailAddress: Optional[str] = None
-    userId: Optional[str] = None
-    username: Optional[str] = None
-    userPassword: Optional[str] = None
-    deviceList: Optional[str] = None
-    farmList: Optional[str] = None
-    sharedDevices: Optional[str] = None
-    sharedFarms: Optional[str] = None
+class User(Base):
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    full_name: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    phone_number: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    registration_date: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    last_login_date: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    email_address: Mapped[str] = mapped_column(String(200), unique=True)
+    username: Mapped[str] = mapped_column(String(100), unique=True)
+    hashed_password: Mapped[str] = mapped_column(String(200))
+    device_list: Mapped[str | None] = mapped_column(Text, nullable=True)
+    farm_list: Mapped[str | None] = mapped_column(Text, nullable=True)
+    shared_devices: Mapped[str | None] = mapped_column(Text, nullable=True)
+    shared_farms: Mapped[str | None] = mapped_column(Text, nullable=True)
 
 class UserCreate(UserBase):
     pass
