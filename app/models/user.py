@@ -7,7 +7,7 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     full_name: Mapped[str | None] = mapped_column(String(200), nullable=True)
-    phone_number: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    #phone_number: Mapped[str | None] = mapped_column(String(50), nullable=True)
     registration_date: Mapped[str | None] = mapped_column(String(50), nullable=True)
     last_login_date: Mapped[str | None] = mapped_column(String(50), nullable=True)
     email_address: Mapped[str] = mapped_column(String(200), unique=True)
